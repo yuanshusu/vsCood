@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "titile": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "titile": "震惊！群主竟然是这样的人！",
+      "author": "typicode"
+    },
+    {
+      "title": "老鸨子在线学axios",
+      "author": "王加辉",
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "body": "xidapuben",
+      "postId": 2,
+      "id": 2
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

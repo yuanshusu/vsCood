@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .zt{
+            width: 80%;
+            margin: 0 auto;
+
+        }
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.0/axios.js"></script>
+</head>
+<body>
+    <div class="zt">
+        <h2>axios取消请求</h2>
+        <button>发送请求</button>
+        <button>取消请求</button>
+    </div>
+    <script>
+        //获取按钮
+        const btn = document.querySelectorAll('button');
+        //2.声明一个全局变量
+        let cancel = null;
+        //触发按钮事件
+        btn[0].onclick = function(){
+            //判断上一次的请求是不是已经得到响应，没有则取消请求
+            if(cancel !==null){
+                //判断当前还没有得到请求，取消请求
+                cancel();
+            }
+            //发送请求
+            axios({
+                method:'get',
+                url: 'http://localhost:3000/posts',
+                //1.添加配置对象的属性
+                cancelToken: new axios.CancelToken((e)=>{
+                    //3.将e赋值给cancel
+                    cancel = e;
+                })
+            }).then((result) => {
+                console.log(result);
+                //数据发送成功后，接收到数据，将cancel初始化
+                cancel = null;
+            });
+        }
+        //触发取消事件
+        btn[1].onclick = function(){
+            cancel();
+        }
+    </script>
+</body>
+</html>

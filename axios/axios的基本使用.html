@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios基本使用</title>
+    <style>
+        .zt{
+            width: 80%;
+            margin: 0 auto;
+
+        }
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.0/axios.js"></script>
+</head>
+<body>
+    <div class="zt">
+        <h2>axios基本使用</h2>
+        <button>GET请求</button>
+        <button>POST请求</button>
+        <button>PUT请求</button>
+        <button>DELETE请求</button>
+    </div>
+    <script>
+        const btn = document.querySelectorAll('button');
+        //发送get请求
+        btn[0].onclick = function () {
+            // 发送Ajax请求
+            axios({
+                //请求类型
+                method:'GET',
+                //请求地址
+                url:'http://localhost:3000/posts/2'
+            }).then(Response=>{
+                console.log(Response);
+            })
+        }
+        //发送客户端数据data
+        btn[1].onclick = function(){
+            axios({
+                method:'POST',
+                url:'http://localhost:3000/posts',
+                //设置请求体
+                data:{
+                    "title":"老鸨子在线学axios",
+                    "author":"王加辉"
+                }
+            }).then(response=>{
+                console.log(response);
+            });
+        };
+        //修改已经存在的数据
+        btn[2].onclick = function(){
+            axios({
+                method:'PUT',
+                url:'http://localhost:3000/posts/3',    //把要修改的id传递在url中
+                data:{                                  //要修改的数据
+                    "title":"老鸨子在线学axios",
+                    "author":"刘庄"
+                }
+            }).then(response=>{
+                console.log(response);
+            })
+        }
+        //删除id为3的数据
+        btn[3].onclick = function(){
+            axios({
+                method:'DELETE',
+                url:'http://localhost:3000/posts/3',        //3代表要删除的id数据
+            }).then(response=>{
+                console.log(response);
+            })
+        }
+    </script>
+</body>
+</html>

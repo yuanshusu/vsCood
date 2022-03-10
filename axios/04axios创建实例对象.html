@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建实例对象</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.0/axios.js"></script>
+</head>
+<body>
+    <h2>axios默认配置</h2>
+    <button>GET请求</button>
+    <button>POST请求</button>
+    <script>
+        const btn = document.querySelectorAll('button');
+        //创建实例对象
+        const daunzhi = axios.create({
+            baseURL:'https://api.apiopen.top',
+            timeout:2000
+        });
+        // daunzhi({
+        //     url:'/getJoke'
+        // }).then((result) => {
+        //     console.log(result);
+        // });
+        //上面的代码等同于下面的代码
+        daunzhi.get('/getJoke').then(result=>{console.log(result.data);});
+    </script>
+</body>
+</html>

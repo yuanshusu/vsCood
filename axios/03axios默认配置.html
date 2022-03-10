@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios默认配置</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.0/axios.js"></script>
+</head>
+<body>
+    <h2>axios默认配置</h2>
+    <button>GET请求</button>
+    <script>
+        const btn = document.querySelector('button');
+        btn.onclick = function(){
+            //配置默认的axios参数
+            axios.defaults.method = 'post';
+            axios.defaults.baseURL= 'http://localhost:3000';
+            axios.defaults.params = {id:1000};
+            axios({
+                url: '/posts'
+            }).then((result) => {
+                console.log(result);
+            });
+        }
+    </script>
+</body>
+</html>
